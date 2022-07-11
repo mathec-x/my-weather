@@ -15,7 +15,7 @@ export interface Params {
 }
 
 export const weather = async (params: Params): Promise<WeatherResponse> => {
-  params.appid = process.env.REACT_APP_WHEATER_API_TOKEN
+  params.appid = process.env.REACT_APP_WEATHER_API_TOKEN
   if (!params.units) {
     params.units = 'metric'// default celsius
   }
@@ -39,7 +39,7 @@ export const onecall = async (params: Params): Promise<{ list: WeatherResponse[]
     params.lang = params.lang.replace("-", "_")
   }
   const searchparams = {
-    appid: process.env.REACT_APP_WHEATER_API_TOKEN,
+    appid: process.env.REACT_APP_WEATHER_API_TOKEN,
     units: 'metric',
     exclude: 'minutely',
     ...params
@@ -57,7 +57,7 @@ export const onecall = async (params: Params): Promise<{ list: WeatherResponse[]
 
 
 export const forecast = async (params: Params): Promise<{ list: WeatherResponse[] }> => {
-  params.appid = process.env.REACT_APP_WHEATER_API_TOKEN
+  params.appid = process.env.REACT_APP_WEATHER_API_TOKEN
   if (!params.units) {
     params.units = 'metric'// default celsius
   }
