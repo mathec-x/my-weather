@@ -9,11 +9,12 @@ import { styled } from '@mui/system';
 
 const View = styled(Box)( ({theme}) => ({
   padding: theme.spacing(2),
-  minHeight: `calc(100vh - 64px)`,
+  minHeight: `calc(100vh - 74px)`,
   display: 'flex',
   alignContent: 'center',
-  alignItems: 'center',
+  alignItems: 'flex-start',
   justifyContent: 'space-around',
+  flexDirection: 'column',
   backgroundColor: theme.palette.background.paper
 }))
 

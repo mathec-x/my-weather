@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { weather } from '@services/OpenWeatherMap'
+import { onecall } from '@services/OpenWeatherMap'
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,11 +11,12 @@ export default async function handler(
     if(!req.query.q && !(req.query.lat && req.query.lon)) {
       throw new Error("?q=city or lat={n}&lon={n} is required on endpoint");
     }
-    const data = await weather(req.query)
 
+    const data = await onecall(req.query)
     res.json(data)
 
   } catch (error) {
+    console.log(error)
     if(error instanceof Response){
       res.status(error.status).json(error.statusText)
 

@@ -1,34 +1,22 @@
+import React from "react";
 import { LocalStorageValues } from "@typeroots/localstorage";
-import React, { useState, useEffect } from "react";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
 
-function getStorageValue<Key extends keyof LocalStorageValues>(
+/**
+ * there are no better hooks than usehooks-ts
+ * 
+ * @see https://usehooks-ts.com/react-hook/use-local-storage
+ */
+
+export default function useLocalstorage<Key extends keyof LocalStorageValues>(
   key: Key,
   defaultValue: LocalStorageValues[Key]
 ) {
-  // getting stored value
-  const saved = localStorage.getItem(key) as any;
-  try {
-    const initial = JSON.parse(saved);
-    return initial || defaultValue;
-  } catch (error) {
-    return defaultValue;
-  }
-}
-
-const useLocalStorage = <Key extends keyof LocalStorageValues>(
-    key: Key,
-    defaultValue: LocalStorageValues[Key]
-) => {
-  const [value, setValue] = useState<any>(() => {
-    return getStorageValue(key, defaultValue);
-  });
-
-  useEffect(() => {
-    // storing input name
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-
-  return [value, setValue] as [ LocalStorageValues[Key], React.Dispatch<LocalStorageValues[Key]> ];
+  return useLocalStorage(key, defaultValue)
 };
 
-export default useLocalStorage
+export function useReadstorage<Key extends keyof LocalStorageValues>(
+  key: Key
+) {
+  return useReadLocalStorage<LocalStorageValues[Key]>(key)
+};

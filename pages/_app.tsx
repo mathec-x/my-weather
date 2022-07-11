@@ -1,10 +1,11 @@
 import Head from 'next/head'
-import type { AppProps } from 'next/app'
-
 import Theme from '@contexts/Theme';
 import Pwa from '@contexts/Pwa';
 import React from 'react';
 import Grid from '@mui/material/Grid';
+import '@styles/globals.css'
+
+import type { AppProps } from 'next/app'
 
 const App = ({ Component, pageProps }: AppProps) => {
 
@@ -17,13 +18,13 @@ const App = ({ Component, pageProps }: AppProps) => {
         />
         <link rel="manifest" href="/manifest.webmanifest" />
       </Head>
-      <Pwa>
-        <Theme>
+      <Theme>
+        <Pwa>
           <Grid container justifyContent="center">
             <Component {...pageProps} />
           </Grid>
-        </Theme>
-      </Pwa>
+        </Pwa>
+      </Theme>
     </React.Fragment>
   )
 }

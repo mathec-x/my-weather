@@ -8,7 +8,10 @@ export default async function handler(
 ) {
 
   try {
-    if(!req.query.q) throw new Error("?q=city is required on endpoint");
+    if(!req.query.q && !(req.query.lat && req.query.lon)) {
+      throw new Error("?q=city or lat={n}&lon={n} is required on endpoint");
+    }
+
     const data = await forecast(req.query)
 
     res.json(data)
