@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
@@ -8,9 +7,9 @@ import useWeather from '@hooks/useWeather';
 import MainWeather from '@components/MainWeather';
 import RegisterPlace from '@components/AppMenu';
 import MenuIcon from '@mui/icons-material/Menu'
+import BottomBar from '@components/BottomBar';
 // @ts-ignore
 import SwipeableViews from 'react-swipeable-views';
-// import BottomBar from '@components/BottomBar';
 
 const Home: React.FC = () => {
   const { handleChange, setFormat, tab, places } = useWeather()
@@ -44,14 +43,11 @@ const Home: React.FC = () => {
             setFormat={setFormat}
           />)}
       </SwipeableViews>
-      {/**
-       * @todo bottom with day selector
-       * <BottomBar
-       *  place={places[tab - 1]}
-       *  value={index} 
-       *  onChange={setIndex}
-       *  /> 
-       */}
+      <BottomBar
+        place={places[tab - 1]}
+        value={index}
+        onChange={setIndex}
+      />
     </Grid>
   )
 }

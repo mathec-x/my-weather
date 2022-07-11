@@ -13,7 +13,7 @@ const View = styled(Box)( ({theme}) => ({
   display: 'flex',
   alignContent: 'center',
   alignItems: 'flex-start',
-  justifyContent: 'space-around',
+  justifyContent: 'flex-start',
   flexDirection: 'column',
   backgroundColor: theme.palette.background.paper
 }))

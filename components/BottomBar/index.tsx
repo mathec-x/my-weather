@@ -7,9 +7,9 @@ import Paper from '@mui/material/Paper';
 import type { WeatherResponse } from '@typeroots/weather';
 
 export interface BottomBarProps {
-  onChange: (value: number) => void
   place: WeatherResponse
-  value: number
+  onChange?: (value: number) => void
+  value?: number
 }
 
 const BottomBar: React.FC<BottomBarProps> = (props) => {
@@ -43,7 +43,7 @@ const BottomBar: React.FC<BottomBarProps> = (props) => {
       <BottomNavigation
         showLabels
         value={props.value}
-        onChange={(_, value) => props.onChange(value)}>
+        onChange={(_, value) => props?.onChange && props.onChange(value)}>
         {labels.map(label =>
           <BottomNavigationAction
             key={`bottom-navigation-${label.text}`}
@@ -56,4 +56,4 @@ const BottomBar: React.FC<BottomBarProps> = (props) => {
   )
 }
 
-export default BottomBar
+export default React.memo(BottomBar)

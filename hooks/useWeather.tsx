@@ -1,5 +1,5 @@
 import { OneCallResponse } from '@typeroots/weather';
-import React, { startTransition } from 'react'
+import React, { startTransition, useState } from 'react'
 import useLanguage from './useLanguage'
 import useLocalstorage from './useLocalStorage'
 
@@ -16,7 +16,7 @@ const useWeather = () => {
   }, [lang])
 
   /**
-   * @todo use place sunrise & sunset in the future
+   * @todo use place sunrise & sunset in the future to the bottombar call
    */
   const getCurrentPos = (date: number) => {
     let hours = new Date(date * 1000).getHours()
@@ -62,9 +62,15 @@ const useWeather = () => {
                 day: new Date(e.dt as number * 1000).toLocaleDateString(lang, { weekday: 'short' })
               }));
 
+              place.hourly = response.hourly.map((x, i) => ([
+                new Date(x.dt * 1000).toLocaleTimeString(lang, { hour: 'numeric' }),
+                x.temp,
+                i % 4 === 0 ? setFormat(x.temp) || '' : null // anotations
+              ]))
+
               setPlaces(places)
             })
-            .catch((error) => {
+          .catch((error) => {
               console.log('retry', retry, error)
               return setTimeout(() => {
                 if (retry < 5) {

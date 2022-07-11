@@ -41,6 +41,7 @@ export interface Daily {
 }
 
 export interface WeatherResponse {
+  hourly?: [string, number, string | null][]
   day?: string,
   daily?: Daily[],
   timezone: number

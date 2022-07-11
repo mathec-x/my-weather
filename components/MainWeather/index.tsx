@@ -4,13 +4,13 @@ import View from '@components/View';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import LineChart from '@components/Chart/Line';
 import type { WeatherResponse } from '@typeroots/weather'
+import LineChart from '@components/Chart/Line';
 
 const ColoredPaper: React.FC<{
   children: JSX.Element;
   title: string;
-  linear: string
+  linear: string;
 }> = (props) => {
   return (
     <Paper
@@ -22,7 +22,7 @@ const ColoredPaper: React.FC<{
         backgroundImage: `linear-gradient(${props.linear})`
       }}
     >
-      <Typography variant="subtitle2" fontSize={10}>{props.title}</Typography>
+      <Typography variant="subtitle2">{props.title}</Typography>
       {props.children}
     </Paper>
   )
@@ -90,26 +90,17 @@ const MainWeather: React.FC<MainWeatherProps> = ({ place, index, setFormat }) =>
               </ColoredPaper>
             </Box>
           }
-          <LineChart
-            labels={["date", "min", "max"]}
-            values={place.daily?.map((x) => ([
-              new Date(x.dt * 1000),
-              x.temp.min,
-              x.temp.max
-            ]))}
-            options={{
-              backgroundColor: 'transparent',
-              colors: ["#aaa", "#aaa"],
-              chartArea: { width: '90%' },
-              vAxis: {
-                gridlines: { count: 1 }
-              }
-            }}
-          />
+          <Box width="100%" p={2}>
+            <LineChart
+              title={<Typography variant="caption" color="GrayText">temperature variation per hour</Typography>}
+              labels={["date", "temp", { role: 'annotation' }]}
+              values={place.hourly}
+            />
+          </Box>
         </React.Fragment>
       )}
     </View>
   )
 }
 
-export default MainWeather
+export default React.memo(MainWeather)
