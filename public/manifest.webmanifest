@@ -2,24 +2,61 @@
   "short_name": "weather",
   "name": "MyWeather",
   "description": "my weather app",
-  "theme_color": "#f69435",
-  "background_color": "#f69435",
+  "theme_color": "#393939",
+  "background_color": "#393939",
   "orientation": "portrait",
   "display": "standalone",
-  "start_url": "/",
-  "icons": [{
-    "src": "icons/favicon.ico",
-    "sizes": "64x64",
-    "type": "image/x-icon"
-  }, {
-    "src": "icons/logo192.png",
-    "type": "image/png",
-    "sizes": "192x192",
-    "purpose": "maskable"
-  }, {
-    "src": "icons/logo512.png",
-    "type": "image/png",
-    "sizes": "512x512",
-    "purpose": "any"
-  }]
+  "start_url": "./?launcher",
+  "id": ".",
+  "screenshots" : [
+    {
+      "src": "icons/screenshot1.png",
+      "sizes": "1082x1922",
+      "type": "image/png",
+      "label": "Homescreen of Awesome App"
+    },
+    {
+      "src": "icons/screenshot2.png",
+      "sizes": "1082x1922",
+      "type": "image/png",
+      "label": "Homescreen of Awesome App"
+    }
+  ],
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icons/icon-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
 }
