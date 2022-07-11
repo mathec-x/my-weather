@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_VERSION = '@0.2';
+const CACHE_VERSION = '@0.3';
 const urlsToCache = [
   '/'
 ];
