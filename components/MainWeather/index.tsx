@@ -4,11 +4,8 @@ import View from '@components/View';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import { Chart } from "react-google-charts";
-
+import LineChart from '@components/Chart/Line';
 import type { WeatherResponse } from '@typeroots/weather'
-import { useTheme } from '@mui/material/styles';
-import useLanguage from '@hooks/useLanguage';
 
 const ColoredPaper: React.FC<{
   children: JSX.Element;
@@ -38,22 +35,11 @@ interface MainWeatherProps {
 }
 
 const MainWeather: React.FC<MainWeatherProps> = ({ place, index, setFormat }) => {
-  const theme = useTheme()
-  const lang = useLanguage()
 
   const day = React.useMemo(() => {
     return place.daily?.[index]
 
   }, [place, index])
-
-
-  const chartDays = React.useMemo(() => {
-    return place.daily?.map((x) => ([
-      new Date(x.dt * 1000),
-      x.temp.min,
-      x.temp.max
-    ])) || []
-  }, [place.daily])
 
   return (
     <View>
@@ -104,31 +90,22 @@ const MainWeather: React.FC<MainWeatherProps> = ({ place, index, setFormat }) =>
               </ColoredPaper>
             </Box>
           }
-          <Box>
-            <Chart
-              chartLanguage={lang}
-              chartType="LineChart"
-              width="100%"
-              height="100px"
-              data={[["date", "min", "max"], ...chartDays]}
-              options={{
-                backgroundColor: 'transparent',
-                // colors: [theme.palette.text.primary, theme.palette.text.primary],
-                // chartArea: { width: '100%', height: '100%' },
-                hAxis: {
-                  // baselineColor: 'transparent',
-                  // textPosition: 'none',
-                  gridlines: { count: 1 },
-                  format: "EE"
-                },
-                vAxis: {
-                  baselineColor: 'transparent',
-                  textPosition: 'none',
-                  gridlines: { count: 1 }
-                }
-              }}
-            />
-          </Box>
+          <LineChart
+            labels={["date", "min", "max"]}
+            values={place.daily?.map((x) => ([
+              new Date(x.dt * 1000),
+              x.temp.min,
+              x.temp.max
+            ]))}
+            options={{
+              backgroundColor: 'transparent',
+              colors: ["#aaa", "#aaa"],
+              chartArea: { width: '90%' },
+              vAxis: {
+                gridlines: { count: 1 }
+              }
+            }}
+          />
         </React.Fragment>
       )}
     </View>
