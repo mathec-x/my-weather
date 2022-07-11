@@ -107,19 +107,21 @@ export default function AppMenu() {
         <ListSubheader>
           Accessibility
         </ListSubheader>
-        <ListItem>
-          <ListItemButton disabled={!pwa.supports} onClick={pwa.install as any}>
-            <ListItemIcon>
-              {sizes.width < 933
-                ? <InstallMobileIcon />
-                : <InstallDesktopIcon />}
-            </ListItemIcon>
-            <ListItemText
-              primary={`Install`}
-              secondary="Get this pwa app"
-            />
-          </ListItemButton>
-        </ListItem>
+        {pwa?.isInstalled !== 'standalone' &&
+          <ListItem>
+            <ListItemButton disabled={!pwa.supports} onClick={pwa.install as any}>
+              <ListItemIcon>
+                {sizes.width < 933
+                  ? <InstallMobileIcon />
+                  : <InstallDesktopIcon />}
+              </ListItemIcon>
+              <ListItemText
+                primary={`Install`}
+                secondary="Get this pwa app"
+              />
+            </ListItemButton>
+          </ListItem>
+        }
         <ListItem>
           <ListItemButton onClick={toggleUnits}>
             <ListItemIcon>
