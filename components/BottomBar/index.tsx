@@ -25,7 +25,7 @@ const BottomBar: React.FC<BottomBarProps> = (props) => {
 
   }, [props]);
 
-  return (
+  return props.place && (
     <Paper
       elevation={3}
       sx={{

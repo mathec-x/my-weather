@@ -30,14 +30,17 @@ const LineChart: React.FC<LineChartProps> = ({ values, options, ...props }) => {
         data={[props.labels, ...values || []]}
         {...props}
         options={{
+          colors: ['#999'],
           backgroundColor: 'transparent',
-          colors: ["#aaa", "#bbb"],
           chartArea: {width: '85%'},
           vAxis: {
             gridlines: { count: 1 },
             textPosition: 'none',
           },
           hAxis: {
+            textStyle: {
+              color: "#999"
+            },
             gridlines: { color: 'transparent' },
             // format: "H" if new date
           },
